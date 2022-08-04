@@ -5279,6 +5279,12 @@ __webpack_require__.r(__webpack_exports__);
   name: "PostComponent",
   components: {
     SinglePostComponent: _SinglePostComponent__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      name: 'Vasya',
+      age: 20
+    };
   }
 });
 
@@ -28178,7 +28184,14 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    Hello\n    "), _c("SinglePostComponent")], 1)
+  return _c(
+    "div",
+    [
+      _vm._v("\n    Hello " + _vm._s(_vm.name) + "\n    "),
+      _c("SinglePostComponent"),
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

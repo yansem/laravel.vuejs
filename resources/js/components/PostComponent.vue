@@ -1,6 +1,6 @@
 <template>
     <div>
-        Hello
+        Hello {{ name }}
         <SinglePostComponent></SinglePostComponent>
     </div>
 </template>
@@ -11,6 +11,12 @@ export default {
     name: "PostComponent",
     components: {
         SinglePostComponent
+    },
+    data() {
+        return {
+            name: 'Vasya',
+            age: 20
+        }
     }
 }
 </script>
