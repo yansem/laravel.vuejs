@@ -1,8 +1,12 @@
 <template>
     <div>
-        Hello {{ name }}
-        <button @click="sayHello">Hello</button>
-        <button @click="sayHi">Hi</button>
+        <p>Hello {{ name }}</p>
+        <p>{{ work }}</p>
+        <div>
+            <button @click="sayHello">Hello</button>
+            <button @click="sayHi">Hi</button>
+        </div>
+
         <SinglePostComponent></SinglePostComponent>
     </div>
 </template>
@@ -26,6 +30,11 @@ export default {
         },
         sayHi() {
             console.log('Hi');
+        }
+    },
+    computed: {
+        work() {
+            return this.name + ' не работает'
         }
     }
 }
