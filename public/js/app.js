@@ -5274,6 +5274,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "PostComponent",
@@ -5285,6 +5287,14 @@ __webpack_require__.r(__webpack_exports__);
       name: 'Vasya',
       age: 20
     };
+  },
+  methods: {
+    sayHello: function sayHello() {
+      console.log('Hello');
+    },
+    sayHi: function sayHi() {
+      console.log('Hi');
+    }
   }
 });
 
@@ -28188,6 +28198,10 @@ var render = function () {
     "div",
     [
       _vm._v("\n    Hello " + _vm._s(_vm.name) + "\n    "),
+      _c("button", { on: { click: _vm.sayHello } }, [_vm._v("Hello")]),
+      _vm._v(" "),
+      _c("button", { on: { click: _vm.sayHi } }, [_vm._v("Hi")]),
+      _vm._v(" "),
       _c("SinglePostComponent"),
     ],
     1

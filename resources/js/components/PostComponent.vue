@@ -1,6 +1,8 @@
 <template>
     <div>
         Hello {{ name }}
+        <button @click="sayHello">Hello</button>
+        <button @click="sayHi">Hi</button>
         <SinglePostComponent></SinglePostComponent>
     </div>
 </template>
@@ -16,6 +18,14 @@ export default {
         return {
             name: 'Vasya',
             age: 20
+        }
+    },
+    methods: {
+        sayHello() {
+            console.log('Hello');
+        },
+        sayHi() {
+            console.log('Hi');
         }
     }
 }
