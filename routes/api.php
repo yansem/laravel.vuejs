@@ -22,4 +22,5 @@ Route::group(['namespace' => 'Person', 'prefix' => 'persons'], function () {
     Route::post('/', 'StoreController');
     Route::get('/', 'IndexController');
     Route::patch('/{person}', 'UpdateController');
+    Route::delete('/{person}', 'DestroyController');
 });

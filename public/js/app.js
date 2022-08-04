@@ -5364,6 +5364,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "IndexComponent",
   components: {},
@@ -5396,7 +5400,7 @@ __webpack_require__.r(__webpack_exports__);
     isEdit: function isEdit(id) {
       return this.personId === id;
     },
-    update: function update(id) {
+    updatePerson: function updatePerson(id) {
       var _this2 = this;
 
       this.personId = null;
@@ -5406,6 +5410,13 @@ __webpack_require__.r(__webpack_exports__);
         job: this.job
       }).then(function (res) {
         _this2.getPeople();
+      });
+    },
+    deletePerson: function deletePerson(id) {
+      var _this3 = this;
+
+      axios["delete"]("/api/persons/".concat(id)).then(function (res) {
+        _this3.getPeople();
       });
     }
   },
@@ -28539,6 +28550,23 @@ var render = function () {
                     [_vm._v("Edit\n                ")]
                   ),
                 ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "text-center" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-danger",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function ($event) {
+                          $event.preventDefault()
+                          return _vm.deletePerson(person.id)
+                        },
+                      },
+                    },
+                    [_vm._v("Delete\n                ")]
+                  ),
+                ]),
               ]),
               _vm._v(" "),
               _c("tr", { class: _vm.isEdit(person.id) ? "" : "d-none" }, [
@@ -28620,12 +28648,12 @@ var render = function () {
                   _c(
                     "a",
                     {
-                      staticClass: "btn btn-success",
+                      staticClass: "btn btn-primary",
                       attrs: { href: "#" },
                       on: {
                         click: function ($event) {
                           $event.preventDefault()
-                          return _vm.update(person.id)
+                          return _vm.updatePerson(person.id)
                         },
                       },
                     },

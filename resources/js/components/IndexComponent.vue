@@ -20,6 +20,9 @@
                     <td class="text-center"><a href="#" @click.prevent="editPerson(person)"
                                                class="btn btn-success">Edit
                     </a></td>
+                    <td class="text-center"><a href="#" @click.prevent="deletePerson(person.id)"
+                                               class="btn btn-danger">Delete
+                    </a></td>
                 </tr>
                 <tr :class="isEdit(person.id) ? '' : 'd-none'">
                     <th></th>
@@ -27,7 +30,8 @@
                     <td><input type="number" class="form-control" v-model="age"></td>
                     <td><input type="text" class="form-control" v-model="job"></td>
                     <td
-                        class="text-center"><a href="#" @click.prevent="update(person.id)" class="btn btn-success">Update
+                        class="text-center"><a href="#" @click.prevent="updatePerson(person.id)"
+                                               class="btn btn-primary">Update
                     </a></td>
 
                 </tr>
@@ -70,9 +74,15 @@ export default {
         isEdit(id) {
             return this.personId === id;
         },
-        update(id) {
+        updatePerson(id) {
             this.personId = null
             axios.patch(`/api/persons/${id}`, {name:this.name, age:this.age, job:this.job})
+            .then(res => {
+                this.getPeople()
+            })
+        },
+        deletePerson(id) {
+            axios.delete(`/api/persons/${id}`)
             .then(res => {
                 this.getPeople()
             })
