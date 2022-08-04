@@ -18,10 +18,7 @@
             </tr>
             </tbody>
         </table>
-        <div>
-            <button @click="sayHello">Hello</button>
-            <button @click="sayHi">Hi</button>
-        </div>
+
 
         <SinglePostComponent></SinglePostComponent>
     </div>
@@ -36,40 +33,20 @@ export default {
     },
     data() {
         return {
-            persons: [
-                {
-                    id: 1,
-                    name: 'a',
-                    age: 11,
-                    job: 0
-                },
-                {
-                    id: 2,
-                    name: 'b',
-                    age: 22,
-                    job: 1
-                },
-                {
-                    id: 3,
-                    name: 'c',
-                    age: 33,
-                    job: 0
-                }
-            ]
+            persons: null
         }
     },
+    mounted() {
+        this.getPersons()
+    },
     methods: {
-        sayHello() {
-            console.log('Hello');
-        },
-        sayHi() {
-            console.log('Hi');
+        getPersons() {
+            axios.get('/persons')
+            .then(data => this.persons = data.data)
         }
     },
     computed: {
-        work() {
-            return this.name + ' не работает'
-        }
+
     }
 }
 </script>

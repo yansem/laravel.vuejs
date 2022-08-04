@@ -5293,9 +5293,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "PostComponent",
@@ -5304,37 +5301,22 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      persons: [{
-        id: 1,
-        name: 'a',
-        age: 11,
-        job: 0
-      }, {
-        id: 2,
-        name: 'b',
-        age: 22,
-        job: 1
-      }, {
-        id: 3,
-        name: 'c',
-        age: 33,
-        job: 0
-      }]
+      persons: null
     };
   },
+  mounted: function mounted() {
+    this.getPersons();
+  },
   methods: {
-    sayHello: function sayHello() {
-      console.log('Hello');
-    },
-    sayHi: function sayHi() {
-      console.log('Hi');
+    getPersons: function getPersons() {
+      var _this = this;
+
+      axios.get('/persons').then(function (data) {
+        return _this.persons = data.data;
+      });
     }
   },
-  computed: {
-    work: function work() {
-      return this.name + ' не работает';
-    }
-  }
+  computed: {}
 });
 
 /***/ }),
@@ -28256,12 +28238,6 @@ var render = function () {
           }),
           0
         ),
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _c("button", { on: { click: _vm.sayHello } }, [_vm._v("Hello")]),
-        _vm._v(" "),
-        _c("button", { on: { click: _vm.sayHi } }, [_vm._v("Hi")]),
       ]),
       _vm._v(" "),
       _c("SinglePostComponent"),
