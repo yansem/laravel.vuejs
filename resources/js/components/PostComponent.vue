@@ -1,7 +1,23 @@
 <template>
     <div>
-        <p>Hello {{ name }}</p>
-        <p>{{ work }}</p>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Age</th>
+                <th scope="col">Job</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="person in persons">
+                <th scope="row">{{ person.id }}</th>
+                <td>{{ person.name }}</td>
+                <td>{{ person.age }}</td>
+                <td>{{ person.job }}</td>
+            </tr>
+            </tbody>
+        </table>
         <div>
             <button @click="sayHello">Hello</button>
             <button @click="sayHi">Hi</button>
@@ -20,8 +36,26 @@ export default {
     },
     data() {
         return {
-            name: 'Vasya',
-            age: 20
+            persons: [
+                {
+                    id: 1,
+                    name: 'a',
+                    age: 11,
+                    job: 0
+                },
+                {
+                    id: 2,
+                    name: 'b',
+                    age: 22,
+                    job: 1
+                },
+                {
+                    id: 3,
+                    name: 'c',
+                    age: 33,
+                    job: 0
+                }
+            ]
         }
     },
     methods: {
