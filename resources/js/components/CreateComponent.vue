@@ -39,6 +39,7 @@ export default {
                 this.name = '';
                 this.age = '';
                 this.job = '';
+                this.$parent.$refs.index.getPeople();
             })
         }
     },
