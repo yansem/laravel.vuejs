@@ -37,30 +37,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Index",
-  data: function data() {
-    return {
-      persons: null
-    };
-  },
   mounted: function mounted() {
-    this.getPeople();
+    this.$store.dispatch('getPeople');
   },
-  methods: {
-    getPeople: function getPeople() {
-      var _this = this;
-
-      axios.get('/api/people/').then(function (res) {
-        _this.persons = res.data.data;
-      });
-    },
-    deletePerson: function deletePerson(id) {
-      var _this2 = this;
-
-      axios["delete"]('/api/people/' + id).then(function (res) {
-        _this2.getPeople();
-      });
+  methods: {},
+  computed: {
+    people: function people() {
+      return this.$store.getters.people;
     }
   }
 });
@@ -157,7 +144,7 @@ var render = function () {
       _vm._v(" "),
       _c(
         "tbody",
-        _vm._l(_vm.persons, function (person) {
+        _vm._l(_vm.people, function (person) {
           return _c("tr", [
             _c(
               "td",
@@ -204,11 +191,11 @@ var render = function () {
                   on: {
                     click: function ($event) {
                       $event.preventDefault()
-                      return _vm.deletePerson(person.id)
+                      return _vm.$store.dispatch("deletePerson", person.id)
                     },
                   },
                 },
-                [_vm._v("Delete")]
+                [_vm._v("Delete\n            ")]
               ),
             ]),
           ])

@@ -11,13 +11,15 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="person in persons">
+            <tr v-for="person in people">
                 <td><router-link :to="{name: 'person.show', params: {id: person.id}}">{{ person.name
                     }}</router-link></td>
                 <td>{{ person.age }}</td>
                 <td>{{ person.job }}</td>
                 <td><router-link :to="{name: 'person.edit', params:{id: person.id}}">Edit</router-link></td>
-                <td><a href="#" @click.prevent="deletePerson(person.id)" class="btn btn-outline-danger">Delete</a></td>
+                <td><a href="#" @click.prevent="$store.dispatch('deletePerson', person.id)"
+                       class="btn btn-outline-danger">Delete
+                </a></td>
             </tr>
             </tbody>
         </table>
@@ -27,26 +29,15 @@
 <script>
 export default {
     name: "Index",
-    data() {
-        return {
-            persons: null
-        }
-    },
     mounted() {
-        this.getPeople()
+        this.$store.dispatch('getPeople')
     },
     methods: {
-        getPeople() {
-            axios.get('/api/people/')
-            .then(res => {
-                this.persons = res.data.data
-            })
-        },
-        deletePerson(id) {
-            axios.delete('/api/people/' + id)
-            .then( res => {
-                this.getPeople()
-            })
+
+    },
+    computed: {
+        people() {
+            return this.$store.getters.people
         }
     }
 }
