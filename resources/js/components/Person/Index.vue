@@ -39,7 +39,7 @@ export default {
         getPeople() {
             axios.get('/api/people/')
             .then(res => {
-                this.persons = res.data
+                this.persons = res.data.data
             })
         },
         deletePerson(id) {
