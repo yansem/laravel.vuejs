@@ -22,21 +22,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Index",
-  data: function data() {
-    return {
-      person: null
-    };
-  },
   mounted: function mounted() {
-    this.getPerson();
+    this.$store.dispatch('getPerson', this.$route.params.id);
   },
-  methods: {
-    getPerson: function getPerson() {
-      var _this = this;
-
-      axios.get("/api/people/".concat(this.$route.params.id)).then(function (res) {
-        _this.person = res.data.data;
-      });
+  computed: {
+    person: function person() {
+      return this.$store.getters.person;
     }
   }
 });
