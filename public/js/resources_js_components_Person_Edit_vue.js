@@ -28,6 +28,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Index",
   data: function data() {
@@ -65,6 +66,11 @@ __webpack_require__.r(__webpack_exports__);
           }
         });
       });
+    }
+  },
+  computed: {
+    isDisabled: function isDisabled() {
+      return this.name && this.age && this.job;
     }
   }
 });
@@ -229,20 +235,16 @@ var render = function () {
     ]),
     _vm._v(" "),
     _c("div", [
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-primary",
-          attrs: { href: "#" },
-          on: {
-            click: function ($event) {
-              $event.preventDefault()
-              return _vm.updatePerson()
-            },
+      _c("input", {
+        staticClass: "btn btn-primary",
+        attrs: { disabled: !_vm.isDisabled, type: "submit", value: "Update" },
+        on: {
+          click: function ($event) {
+            $event.preventDefault()
+            return _vm.updatePerson()
           },
         },
-        [_vm._v("Update")]
-      ),
+      }),
     ]),
   ])
 }
